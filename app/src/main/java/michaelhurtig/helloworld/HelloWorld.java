@@ -12,7 +12,7 @@ import android.widget.EditText;
 
 public class HelloWorld extends ActionBarActivity {
 
-    public final static String EXTRA_MESSAGE = "com.example.helloworld.MESSAGE";
+    public final static String EXTRA_MESSAGE = "michaelhurtig.helloworld.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +33,16 @@ public class HelloWorld extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()){
+            case R.id.action_search:
+                openSearch();
+                return true;
+            case R.id.action_settings:
+                openSettings():
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     public void sendMessage(View view) {
@@ -45,5 +50,6 @@ public class HelloWorld extends ActionBarActivity {
         EditText editText = (EditText) findViewById(R.id.edit_message);
         String message = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
     }
 }
